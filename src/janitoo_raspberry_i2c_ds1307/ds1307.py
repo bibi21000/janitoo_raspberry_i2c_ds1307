@@ -112,7 +112,7 @@ class DS1307Component(JNTComponent):
         """Check that the component is 'available'
 
         """
-        return self.sensor is not None
+        return self.clock is not None
 
     def start(self, mqttc):
         """Start the bus
