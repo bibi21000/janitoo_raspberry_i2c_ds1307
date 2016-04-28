@@ -55,7 +55,7 @@ assert(COMMAND_DESC[COMMAND_WEB_RESOURCE] == 'COMMAND_WEB_RESOURCE')
 assert(COMMAND_DESC[COMMAND_DOC_RESOURCE] == 'COMMAND_DOC_RESOURCE')
 ##############################################################
 
-def make_bno(**kwargs):
+def make_ds1307(**kwargs):
     return DS1307Component(**kwargs)
 
 class DS1307Component(JNTComponent):
