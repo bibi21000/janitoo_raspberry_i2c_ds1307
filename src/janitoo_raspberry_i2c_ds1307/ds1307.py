@@ -99,7 +99,7 @@ class DS1307Component(JNTComponent):
             #~ print "Raspberry Pi=\t" + time.strftime("%Y-%m-%d %H:%M:%S")
             #~ print "DS1307=\t\t%s" % ds1307.read_datetime()
             #~ time.sleep(10.0)
-            data = self.sensor.read_temp()
+            #~ data = self.sensor.read_temp()
             ret = float(data)
         except:
             logger.exception('[%s] - Exception when retrieving temperature', self.__class__.__name__)
@@ -120,7 +120,7 @@ class DS1307Component(JNTComponent):
         JNTComponent.start(self, mqttc)
         self._bus.i2c_acquire()
         try:
-            self.clock = BNO055.BNO055(address=self.values["addr"].data, i2c=self._bus._ada_i2c)
+            self.clock = SDL_DS1307(address=self.values["addr"].data, i2c=self._bus._ada_i2c)
         except:
             logger.exception("[%s] - Can't start component", self.__class__.__name__)
         finally:

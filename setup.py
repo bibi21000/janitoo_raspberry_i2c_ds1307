@@ -99,7 +99,7 @@ setup(
       'https://github.com/adafruit/Adafruit_Python_GPIO/archive/master.zip#egg=Adafruit-GPIO',
     ],
     entry_points = {    "janitoo.components": [
-        "rpii2c.bno = janitoo_raspberry_i2c_ds1307.ds1307:make_ds1307",
+        "rpii2c.ds1307 = janitoo_raspberry_i2c_ds1307.ds1307:make_ds1307",
         ],
     },
 )
