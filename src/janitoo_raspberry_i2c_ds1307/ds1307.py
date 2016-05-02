@@ -68,9 +68,8 @@ class DS1307Component(JNTComponent):
         name = kwargs.pop('name', "Input")
         product_name = kwargs.pop('product_name', "RTC DS1307")
         product_type = kwargs.pop('product_type', "RTC DS1307 clock")
-        product_manufacturer = kwargs.pop('product_manufacturer', "Janitoo")
         JNTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
-                product_name=product_name, product_type=product_type, product_manufacturer="Janitoo", **kwargs)
+                product_name=product_name, product_type=product_type, **kwargs)
         logger.debug("[%s] - __init__ node uuid:%s", self.__class__.__name__, self.uuid)
 
         uuid="addr"
