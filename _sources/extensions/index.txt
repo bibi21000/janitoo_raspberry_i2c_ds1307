@@ -1,0 +1,13 @@
+janitoo_raspberry_i2c_ds1307 package
+====================================
+
+Show janitoo's extensions.
+
+Core extensions
+---------------
+
+Components
+^^^^^^^^^^
+
+ - rpii2c.ds1307 (janitoo_raspberry_i2c_ds1307.ds1307:make_ds1307)
+
