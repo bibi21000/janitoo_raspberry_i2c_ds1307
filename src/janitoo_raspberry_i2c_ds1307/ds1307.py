@@ -82,6 +82,14 @@ class DS1307Component(JNTComponent):
             default=0x68,
         )
 
+        uuid="now"
+        self.values[uuid] = self.value_factory['sensor_string'](options=self.options, uuid=uuid,
+            node_uuid=self.uuid,
+            help='Return the current date (YY-DD-MM HH-MM-SS)',
+            label='now',
+            get_data_cb=self.now,
+        )
+
         self.clock = None
 
     def now(self, node_uuid, index):
@@ -89,21 +97,9 @@ class DS1307Component(JNTComponent):
         """
         self._bus.i2c_acquire()
         try:
-
-        #~ ds1307 = SDL_DS1307(1, 0x68)
-        #~ ds1307.write_now()
-        #~ # Main Loop - sleeps 10 minutes, then reads and prints values of all clocks
-        #~ while True:
-            #~ currenttime = datetime.datetime.utcnow()
-            #~ deltatime = currenttime - starttime
-            #~ print ""
-            #~ print "Raspberry Pi=\t" + time.strftime("%Y-%m-%d %H:%M:%S")
-            #~ print "DS1307=\t\t%s" % ds1307.read_datetime()
-            #~ time.sleep(10.0)
-            #~ data = self.sensor.read_temp()
-            ret = float(data)
+            ret = self.clock.read_str()
         except Exception:
-            logger.exception('[%s] - Exception when retrieving temperature', self.__class__.__name__)
+            logger.exception('[%s] - Exception when retrieving now', self.__class__.__name__)
             ret = None
         finally:
             self._bus.i2c_release()
@@ -121,7 +117,7 @@ class DS1307Component(JNTComponent):
         JNTComponent.start(self, mqttc)
         self._bus.i2c_acquire()
         try:
-            self.clock = SDL_DS1307(address=self.values["addr"].data, i2c=self._bus._ada_i2c)
+            self.clock = SDL_DS1307(address=self.values["addr"].data, busnum=self._bus.get_busnum())
         except Exception:
             logger.exception("[%s] - Can't start component", self.__class__.__name__)
         finally:
