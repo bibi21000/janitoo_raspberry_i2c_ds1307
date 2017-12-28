@@ -1,0 +1,22 @@
+janitoo_raspberry_i2c_ds1307 package
+====================================
+
+Submodules
+----------
+
+janitoo_raspberry_i2c_ds1307.ds1307 module
+------------------------------------------
+
+.. automodule:: janitoo_raspberry_i2c_ds1307.ds1307
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: janitoo_raspberry_i2c_ds1307
+    :members:
+    :undoc-members:
+    :show-inheritance:
