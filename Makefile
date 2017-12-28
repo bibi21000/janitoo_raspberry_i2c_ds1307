@@ -170,3 +170,18 @@ debch:
 
 deb:
 	dpkg-buildpackage
+
+boot_config:
+	if [ $( grep -c ^dtoverlay=i2c-rtc,ds1307 ) -eq 0 ]; then \
+	  echo "dtoverlay=i2c-rtc,ds1307"|sudo tee -a /boot/config.txt; \
+	  sudo apt-get -y remove fake-hwclock; \
+	  sudo update-rc.d -f fake-hwclock remove; \
+	  sudo sed -e "s|^if \[ -e /run/systemd/system \]|#if [ -e /run/systemd/system ]|" -i /lib/udev/hwclock-set; \
+	  sudo sed -e "s|^.*exit 0|#   exit 0|" -i /lib/udev/hwclock-set; \
+	  sudo sed -e "s|^fi|#fi|" -i /lib/udev/hwclock-set; \
+	  echo "I update /lib/udev/hwclock-set to" \
+	  cat /lib/udev/hwclock-set \
+	  sudo hwclock -w \
+	  echo "Get time from rtc" \
+	  sudo hwclock -r \
+	fi
